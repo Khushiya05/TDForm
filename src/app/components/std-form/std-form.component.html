@@ -1,0 +1,93 @@
+<div class="container">
+    <h3 class="text-center bg-info text-white p-4 m-2">Student Form</h3>
+    <div class="row">
+        <div class="col-md-8 offset-md-2 ">
+            <form #stdSignUpForm="ngForm" (ngSubmit)="stdForm()" class="bg-back mt-3">
+                <div class="form-group">
+                    <label for="fname">First Name<sup class="text-danger">*</sup></label>
+                    <input type="text" name="fname" #fname="ngModel" ngModel id="fname" class="form-control" required pattern="[a-zA-Z]+">
+                    <p class="alert alert-danger" *ngIf="fname.touched && fname.hasError('required')">
+                        First name is required Field
+                    </p>
+                    <p class="alert alert-danger" *ngIf="fname.dirty && fname.hasError('pattern')">
+                        First name should be letters Only
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name<sup class="text-danger">*</sup></label>
+                    <input type="text" name="lname" #lname="ngModel" ngModel id="lname" class="form-control" required pattern="[a-zA-Z]+">
+                    <p class="alert alert-danger" *ngIf="lname.touched && lname.hasError('required')">
+                        Last name is required Field
+                    </p>
+                    <p class="alert alert-danger" *ngIf="lname.dirty && lname.hasError('pattern')">
+                        Last name should be letters Only
+                    </p>
+                </div>
+                <div ngModelGroup="userDetails">
+                    <div class="form-group">
+                        <label for="email">Email<sup class="text-danger">*</sup></label>
+                        <input type="text" name="email" #email="ngModel" ngModel id="email" class="form-control" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                        <p class="alert alert-danger" *ngIf="email.touched && email.hasError('required')">
+                            Email is required Field
+                        </p>
+                        <p class="alert alert-danger" *ngIf="email.dirty && email.hasError('pattern')">
+                            Please enter valid Email Address
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username<sup class="text-danger">*</sup></label>
+                        <input type="text" name="username" #username="ngModel" ngModel id="username" class="form-control" required pattern="[A-Za-z]+">
+                        <p class="alert alert-danger" *ngIf="username.touched && username.hasError('required')">
+                            Username is required Field
+                        </p>
+                        <p class="alert alert-danger" *ngIf="username.dirty && username.hasError('pattern')">
+                            Username should not include special characters and numbers
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact<sup class="text-danger">*</sup></label>
+                    <input type="text" name="contact" #contact="ngModel" ngModel id="contact" class="form-control" required minlength="10" maxlength="10" pattern="[0-9]+">
+                    <p class="alert alert-danger" *ngIf="contact.touched && contact.hasError('required')">
+                        Contact is required Field
+                    </p>
+                    <ng-container *ngIf="contact.dirty">
+                        <p class=" alert alert-danger" *ngIf="contact.hasError('minlength') ">
+                            Phone number length should be 10 digits
+                        </p>
+                        <p class="alert alert-danger" *ngIf="contact.hasError('pattern')">
+                            Phone number should include only numbers
+                        </p>
+                    </ng-container>
+                </div>
+                <div class="form-group">
+                    <label for="secreateQuestion">Secret Question<sup class="text-danger">*</sup></label>
+                    <select name="secreateQuestion" id="secreateQuestion" class="form-control" ngModel #secreateQuestion="ngModel" required>
+                        <option value="favoriteTecher">Favorite Teacher</option>
+                        <option value="favoriteBook">Favorite Book</option>
+                        <option value="favoritePlace">Favorite Place</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="answer">Answer<sup class="text-danger">*</sup></label>
+                    <input type="text" class="form-control" ngModel id="answer" name="answer" #answer="ngModel" required>
+                </div>
+
+                <div class="form-group">
+                    <p>Mode Of Contact:<sup class="text-danger">*</sup></p>
+                    <div class="form-group">
+                        <label for="phone">Phone:
+                            <input type="radio" name="contactMode" id="phone" value="phone" ngModel required #contactMode="ngModel">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:
+                            <input type="radio" name="contactMode" id="email" value="email" ngModel required #contactMode="ngModel">
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-info btn-block">Add Student</button>
+            </form>
+        </div>
+    </div>
+</div>
